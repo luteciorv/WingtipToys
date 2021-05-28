@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Web;
@@ -7,6 +8,8 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
+using WingtipToys.Context;
+using WingtipToys.Models;
 
 namespace WingtipToys
 {
@@ -70,6 +73,19 @@ namespace WingtipToys
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        // Retorna todas as categorias existentes de produtos
+        public IQueryable<Category> GetCategories()
+        {
+            // Instanciar o context
+            ProductContext database = new ProductContext();
+
+            // Pegar todas as categorias
+            IQueryable<Category> categories = database.Categories;
+
+            // Retornar elas
+            return categories;
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)

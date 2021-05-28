@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Meu aplicativo ASP.NET</title>
+    <title><%: Page.Title %> - Wingtip Toys</title>
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
@@ -46,11 +46,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Nome do aplicativo</a>
+                    <a class="navbar-brand" runat="server" href="~/">Wingtip Toys</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Página inicial</a></li>
+                        <li><a runat="server" href="~/ProductList">Produtos</a></li>
                         <li><a runat="server" href="~/About">Sobre</a></li>
                         <li><a runat="server" href="~/Contact">Contato</a></li>
                     </ul>
@@ -73,6 +74,34 @@
                 </div>
             </div>
         </div>
+
+        <!-- Cabeçalho -->
+        <div id="TitleContent" style="text-align: center">
+            <a runat="server" href="~/">
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/logo.jpg" BorderStyle="None" />
+            </a>
+            <br />
+        </div>
+
+        <!-- Menu contendo as categorias -->
+        <div id="CategoryMenu" style="text-align: center">
+            <asp:ListView ID="CategoryList"
+                runat="server"
+                ItemType="WingtipToys.Models.Category"
+                SelectMethod="GetCategories">
+                
+                <ItemTemplate>
+                    <b style="font-size: large; font-style: normal">
+                        <a href="/ProductList.aspx?id=<%#:Item.CategoryID %>">
+                            <%#: Item.CategoryName %>
+                        </a>
+                    </b>
+                </ItemTemplate>
+                <ItemSeparatorTemplate>&nbsp; | &nbsp;</ItemSeparatorTemplate>
+            </asp:ListView>
+        </div>
+
+        <!-- Conteúdo das outras páginas -->
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
