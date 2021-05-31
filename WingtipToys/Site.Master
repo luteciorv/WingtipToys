@@ -104,6 +104,7 @@
         <!-- Conteúdo das outras páginas -->
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                <asp:CheckBox ID="CheckBox1" runat="server" />
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
